@@ -1,0 +1,44 @@
+src/styles/AppRouter.css
+
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+            /* background-color: white */
+    /* Update with your desired background color */
+}
+
+/* Navigation Styles */
+.navbar {
+    background-color: #333;
+    /* Update with your desired color */
+    padding: 3rem;
+    text-align: center;
+    z-index: 9999999;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin-right: 1.5rem;
+}
+
+.navbar a {
+    color: #fff;
+    /* Update with your desired text color */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #f1c21c;
+    /* Update with your desired hover color */
+}
