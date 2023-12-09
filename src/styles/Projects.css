@@ -1,29 +1,67 @@
 /* Projects.css */
+
 .projects-container {
-    padding: 2rem;
+    position: relative;
+    background-color: #121212;
+    /* Match the background color of About component */
+    padding-bottom: 100px;
+    /* Adjust as needed */
+    overflow: hidden;
+    gap: 2rem;
+}
+
+
+
+
+
+.projects-content {
+    position: relative;
+    z-index: 1;
+    padding: 4rem;
+    /* Adjust padding as needed */
     text-align: center;
-    background-color: rgb(17, 24, 39);
-    /* Darker background color */
+    color: #fff;
 }
 
 .projects-heading {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     margin-bottom: 2rem;
-    color: #eee;
-    /* Lighter text color */
+    color: #ff5555;
+    /* Match the heading color of About component */
 }
 
 .projects-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 2rem;
     justify-content: center;
 }
 
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #121212;
+    color: #fff;
+}
 /* Add the following media query to adjust layout for smaller screens */
 @media (max-width: 767px) {
     .projects-list {
         grid-template-columns: 1fr;
     }
+    .projects-container{
+        padding: 0;
+    }
+    .projects-content{
+                padding: 0.7rem;
+    }
+}
+@media screen and (max-width: 767px) {
+    .project-card {
+        min-width: 100%;
+    }
+
 }

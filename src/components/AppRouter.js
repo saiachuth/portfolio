@@ -1,68 +1,124 @@
-import React, { useRef } from "react";
+// AppRouter.js
+import React, { useRef, useState } from "react";
+import { FiMenu } from "react-icons/fi";
 import Home from "./Home";
-import "../styles/AppRouter.css";
 import About from "./About";
 import Projects from "./Projects";
+import "../styles/AppRouter.css";
+import { useSpring, animated } from "react-spring";
+import { Link, animateScroll as scroll } from "react-scroll";
+import { useEffect } from "react";
+import { scroller } from "react-scroll";
+
 
 
 const AppRouter = () => {
+    const fadeIn = useSpring({
+      opacity: 1,
+      from: { opacity: 0 },
+      config: { tension: 1, friction: 1 },
+    });
+
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
   const homeRef = useRef(null);
 
-  const scrollToSection = (ref) => {
-    if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
-    }
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
+ const scrollToSection = (sectionId) => {
+   scroller.scrollTo(sectionId, {
+     duration: 800,
+     delay: 0,
+     smooth: "easeInOutQuart",
+   });
+   setIsMenuOpen(false);
+ };
+
+
+  const handleScroll = () => {
+    const sections = ["home", "about", "projects"]; // Add more section IDs
+    const currentPosition = window.scrollY;
+
+    const distances = sections.map((section) => {
+      const target = document.getElementById(section);
+      return Math.abs(target.offsetTop - currentPosition);
+    });
+
+    const minDistanceIndex = distances.indexOf(Math.min(...distances));
+    const targetSection = sections[minDistanceIndex];
+
+    // Scroll to the nearest section
+    document.getElementById(targetSection).scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+  
+
+  // Attach the scroll event listener
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="nav">
-    <div className='text-white lg:w-full'>
-      <nav className='bg-gray-900 p-4 text-white mx-auto lg:w-full'>
-        <ul className='flex justify-around'>
-          <li className='mr-6'>
-            <button
-              className='hover:text-gray-300'
-              onClick={() => scrollToSection(homeRef)}
-            >
-              Home
-            </button>
-          </li>
-          <li className='mr-6'>
-            <button
-              className='hover:text-gray-300'
-              onClick={() => scrollToSection(aboutRef)}
-            >
-              About
-            </button>
-          </li>
-          <li className='mr-6'>
-            <button
-              className='hover:text-gray-300'
-              onClick={() => scrollToSection(projectsRef)}
-            >
-              Projects
-            </button>
-          </li>
-        </ul>
-      </nav>
-      <div ref={homeRef}>
-        <Home />
-      </div>
+    <animated.div className='nav' style={fadeIn}>
+      <div className='textcolor'>
+        <nav className='navbar'>
+          <div className='menu-icon' onClick={toggleMenu}>
+            <FiMenu />
+          </div>
+          <ul className={`nav-list ${isMenuOpen ? "active" : ""}`}>
+            <li>
+              <Link to='home' smooth={true} duration={1}>
+                <button
+                  className='neumorphic-button text-hover'
+                  onClick={() => scrollToSection("home")}
+                >
+                  Home
+                </button>
+              </Link>
+            </li>
+            <li>
+              <Link to='about' smooth={true} duration={0.1}>
+                <button
+                  className='neumorphic-button text-hover'
+                  onClick={() => scrollToSection(aboutRef)}
+                >
+                  About
+                </button>
+              </Link>
+            </li>
+            <li>
+              <Link to='projects' smooth={true} duration={0.01}>
+                <button
+                  className='neumorphic-button text-hover'
+                  onClick={() => scrollToSection(projectsRef)}
+                >
+                  Projects
+                </button>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <div ref={homeRef}>
+          <Home />
+        </div>
 
-      <div ref={aboutRef}>
-        <About />
-      </div>
+        <div ref={aboutRef}>
+          <About />
+        </div>
 
-      <div ref={projectsRef}>
-        <Projects />
+        <div ref={projectsRef}>
+          <Projects />
+        </div>
       </div>
-
-      {/* Additional sections */}
-      {/* ... */}
-    </div>
-    </div>
+    </animated.div>
   );
 };
 

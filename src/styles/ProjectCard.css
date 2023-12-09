@@ -2,28 +2,29 @@
 
 .project-card {
     margin: 0 auto;
-    /* Center the card */
     max-width: 300px;
-    /* Set a maximum width for better responsiveness */
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background-color: #121212;
+    /* Match the background color of About component */
+    box-shadow: 20px 20px 40px #000, -20px -20px 40px #232323;
+    /* Neumorphic shadow */
     border-radius: 20px;
     transition: box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-    box-shadow: 2px 2px 8px #f1c21c, -2px -2px 8px #f1c21c;
+    box-shadow: 30px 30px 60px #000, -30px -30px 60px #232323;
+    /* Neumorphic shadow on hover */
 }
 
 .project-image {
     width: 100%;
     max-height: 200px;
-    /* Set a maximum height for better responsiveness */
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -47,23 +48,26 @@
 }
 
 .project-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #f1c21c;
-    color: rgb(17, 24, 39);
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
+    margin: 0 auto;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-radius: 20px;
+        color: #ff5555;
+        box-shadow: 10px 10px 20px #000, -10px -10px 20px #232323;
+        transition: box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .project-link:hover {
-    background-color: #f1c21c;
+    box-shadow: 10px 10px 40px rgba(255, 85, 85, 0.8), -10px -10px 40px rgba(255, 255, 255, 0.3);    /* Neumorphic shadow on hover */
 }
 
-/* Media query for smaller screens */
-@media (max-width: 767px) {
-    .project-card {
-        max-width: 100%;
-        /* Allow the card to take full width on smaller screens */
-    }
+@media screen and (max-width: 767px) {
+            .project-card{
+            min-width: 100%;
+            }
+         
 }

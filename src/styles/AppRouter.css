@@ -1,28 +1,38 @@
-src/styles/AppRouter.css
+/* AppRouter.css */
 
+/* Import your existing neumorphic styles or add your neumorphic styles here */
 /* Global Styles */
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
-            /* background-color: white */
-    /* Update with your desired background color */
+    /* font-family: 'Arial', sans-serif; */
+    background-color: #121212;
+    color: #fff;
+    overflow-x: hidden;
+        /* Add this line to prevent horizontal scrolling */    /* Comment out or remove this line */
+}
+
+.textcolor {
+    max-height: 10vh;
 }
 
 /* Navigation Styles */
 .navbar {
-    background-color: #333;
-    /* Update with your desired color */
-    padding: 3rem;
-    text-align: center;
-    z-index: 9999999;
+    background-color: #121212;
+    max-height: 15vh;
+    margin: 0.8rem 2rem;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    /* Change to space-between for better alignment */
+    align-items: center;
 }
 
 .navbar ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    justify-content: center;
 }
 
 .navbar li {
@@ -31,7 +41,6 @@ body {
 
 .navbar a {
     color: #fff;
-    /* Update with your desired text color */
     text-decoration: none;
     font-weight: bold;
     font-size: 1.2rem;
@@ -39,6 +48,96 @@ body {
 }
 
 .navbar a:hover {
-    color: #f1c21c;
-    /* Update with your desired hover color */
+    color: #ff5555;
+}
+
+/* Neumorphic Button Style */
+.neumorphic-button {
+    background-color: #121212;
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.neumorphic-button:hover {
+    box-shadow: 0 0 30px rgba(255, 85, 85, 0.8);
+}
+
+/* Text Hover Effect */
+.text-hover:hover {
+    color: #ff5555;
+}
+
+.menu-icon {
+    display: none;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 760px) {
+    html,
+        body {
+            overflow-x: hidden;
+        }
+    .navbar {
+        flex-direction: column;
+        justify-items: flex-end;
+            align-items: flex-end;
+        /* Adjusted for better spacing */
+        padding: 1rem 2rem;
+        /* Adjusted padding for better spacing */
+    }
+
+    .navbar ul {
+        margin-top: 1rem;
+        gap: 1.5rem;
+        /* Adjusted for better spacing */
+        padding: 0;
+    }
+
+    .navbar li {
+        margin: 0.5rem 0;
+        padding: 0;
+    }
+
+    .neumorphic-button {
+        margin-bottom: 0.5rem;
+        /* Adjusted for better spacing */
+    }
+
+    .nav-list {
+        overflow-x: hidden;
+        z-index: 999999;
+        display: none;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        top: 15vh;
+        right: 0;
+        background-color: rgba(18, 18, 18, 0.9);
+        padding: 1rem;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        transition: transform 0.3s ease;
+        transform: translateX(100%);
+    }
+
+    .nav-list.active {
+        display: flex;
+        flex-direction: column;
+        transform: translateX(0);
+    }
+
+    .menu-icon {
+
+        display: flex;
+      
+        cursor: pointer;
+        color: #fff;
+        font-size: 1.5rem;
+    }
 }
